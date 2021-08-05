@@ -18,6 +18,8 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "node-sass": "^6.0.1",
+    "svelte-preprocess": "^4.6.9",
     "sirv-cli": "^1.0.0"
   }
 }
