@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/svelte-lite.iml" filepath="$PROJECT_DIR$/.idea/svelte-lite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../memo-app/.idea/websokets.iml" filepath="$PROJECT_DIR$/../../memo-app/.idea/websokets.iml" />
+    </modules>
+  </component>
+</project>
