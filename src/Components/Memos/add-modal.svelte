@@ -22,7 +22,7 @@
   }
 
   const closeModal = () => {
-    dispatch('onClose', false)
+    dispatch('closeModal', false)
   }
 
 </script>
@@ -35,7 +35,13 @@
       <input id="name" type="text" name="name" bind:value={memoForm.name} >
      
       <label for="description"> Description </label>
-      <input id="description" type="text" name="description" bind:value={memoForm.description} >
+      <textarea
+        class="description_field"
+        rows="4"
+        id="description"
+        name="description"
+        style="resize: none"
+        bind:value={memoForm.description}></textarea>
     
       <label for="status"> Status <input id="status" type="checkbox" bind:checked={statusMemo}></label>
     
@@ -84,6 +90,11 @@
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
+}
+.description_field {
+  resize: none;
+  width: 100%;
+  font-size: 14px;
 }
 
 </style>
