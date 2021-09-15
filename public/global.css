@@ -77,3 +77,7 @@ div {
   background-color: #dedede;
   cursor: pointer;
 }
+.action-btn:hover {
+	  background-color: #444;
+	  color: #f8f8f8;
+}

@@ -21,24 +21,25 @@
     });
   }
 
+  const closeModal = () => {
+    dispatch('onClose', false)
+  }
+
 </script>
 
 <div class="add_modal">
-  <div>
-    <form name="memo-controls-form" on:submit|preventDefault>
-      <label>
-        Enter memo name
-        <input type="text" name="name" bind:value={memoForm.name} >
-      </label>
-      <label>
-        Description
-        <input type="text" name="description" bind:value={memoForm.description} >
-      </label>
-      <label>
-        Status
-        <input type="checkbox" bind:checked={statusMemo}>
-      </label>
-      <button :disabled="{disabledButton}" class="action-btn" on:click={createMemo}>Create</button>
+  <div class="add_modal__content">
+    <div class="close_icon" on:click={closeModal}>x</div>
+    <form class="memo-controls-form"  name="memo-controls-form" on:submit|preventDefault>
+      <label for="name"> Enter memo name </label>
+      <input id="name" type="text" name="name" bind:value={memoForm.name} >
+     
+      <label for="description"> Description </label>
+      <input id="description" type="text" name="description" bind:value={memoForm.description} >
+    
+      <label for="status"> Status <input id="status" type="checkbox" bind:checked={statusMemo}></label>
+    
+      <button :disabled="{disabledButton}" class="action-btn add-memo" on:click={createMemo}>Create</button>
     </form>
   </div>
 </div>
@@ -46,16 +47,43 @@
 <style>
   .add_modal {
     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 100;
     padding: 1.2rem;
     border-radius: 6px;
-    max-width: 50vw;
-    max-height: 50vh;
+    background-color: rgba(0,0,0,0.6);  
+  }
+   .add_modal__content {
+    padding: 2rem;
+    position: relative;
     background: #fff;
     box-shadow: 0 0 2px rgba(0,0,0,0.6);
-    width: 400px;
-    height: 400px;
     top: calc( 50% - 200px);
     left: calc(50% - 200px);
+    width: 400px;
+   }
+   .memo-controls-form > input {
+      width: 100%;
+      padding: 8px 16px;
+      border-radius: 4px;
+   }
+  .memo-controls-form > label {
+    margin-bottom: 8px;
   }
+
+  .add-memo {
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+.close_icon {
+  text-align: right;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 </style>
