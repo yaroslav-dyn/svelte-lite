@@ -95,9 +95,21 @@ div {
   background-color: #eee;
 }
 
+.action-btn[disabled] {
+  opacity: 0.6;
+}
+.action-btn[disabled]:hover {
+  color: inherit;
+  background-color: #eee;
+}
+
 .action-btn:hover {
   background-color: #444;
   color: #f8f8f8;
+}
+
+.action-btn.success {
+  background-color: limegreen;
 }
 
 .memo-icons {
@@ -107,20 +119,12 @@ div {
   cursor: pointer;
 }
 
-.memo-icons:after {
-  content: "i"
-}
-
 .memo-icons.attention {
   color: darkred;
 }
 
 .memo-icons.success {
   color: forestgreen;
-}
-
-.memo-icons.icon_close:after {
-  content: "x"
 }
 
 /*Main parts*/
@@ -151,3 +155,29 @@ div {
   left: calc(50% - 200px);
   width: 400px;
 }
+
+
+/*.material-icons {*/
+/*  font-family: 'Material Icons';*/
+/*  font-weight: normal;*/
+/*  font-style: normal;*/
+/*  font-size: 24px;  !* Preferred icon size *!*/
+/*  display: inline-block;*/
+/*  line-height: 1;*/
+/*  text-transform: none;*/
+/*  letter-spacing: normal;*/
+/*  word-wrap: normal;*/
+/*  white-space: nowrap;*/
+/*  direction: ltr;*/
+
+/*  !* Support for all WebKit browsers. *!*/
+/*  -webkit-font-smoothing: antialiased;*/
+/*  !* Support for Safari and Chrome. *!*/
+/*  text-rendering: optimizeLegibility;*/
+
+/*  !* Support for Firefox. *!*/
+/*  -moz-osx-font-smoothing: grayscale;*/
+
+/*  !* Support for IE. *!*/
+/*  font-feature-settings: 'liga';*/
+/*}*/

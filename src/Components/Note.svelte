@@ -7,7 +7,6 @@
     export let status = false;
     export let noteID = null;
     const dispatch = createEventDispatcher();
-    let statusHru = "";
 
     $: statusHru = status ? 'Complete' : 'Pending'
 
@@ -21,14 +20,16 @@
 </script>
 
 <div class="personal-cart">
-    <div class="header_cart" on:click>{orderNumber}. &nbsp;{name}</div>
+    <div class="header_cart">{orderNumber}. &nbsp;{name}</div>
     <div>{description || ''}</div>
     <div class="status {status ? 'complete' : 'pending'}">{statusHru}</div>
     <div>
-        <i on:click|self={onDeleteItem(noteID)} class="memo-icons icon_close attention"></i>
+        <i
+        class="material-icons memo-icons icon_close attention"
+        on:click|self={onDeleteItem(noteID)}>clear</i>
+        <i on:click|self class="material-icons memo-icons icon_close">launch</i>
     </div>
 </div>
-
 
 <style>
   .personal-cart {
@@ -38,7 +39,7 @@
     border-radius: 3px;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
     padding: 1.4rem;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
   .personal-cart > div:first-child {
     flex-basis: 40%;

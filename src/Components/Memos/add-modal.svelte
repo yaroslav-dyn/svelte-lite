@@ -1,5 +1,4 @@
 <script>
-
   import {createEventDispatcher} from 'svelte';
 
   let memoForm = {
@@ -12,7 +11,7 @@
 
   const dispatch = createEventDispatcher();
 
-  $: disabledButton = !memoForm.name;
+  $: disabled = !(!!memoForm.name);
 
   const createMemo = () => {
     memoForm.status = statusMemo;
@@ -47,7 +46,13 @@
 
       <label for="status"> Status <input id="status" type="checkbox" bind:checked={statusMemo}></label>
 
-      <button :disabled="{disabledButton}" class="action-btn add-memo" on:click={createMemo}>Create</button>
+      <button
+        disabled="{disabled}"
+        class="action-btn add-memo"
+        on:click={createMemo}>
+        Create
+      </button>
+
     </form>
   </div>
 </div>

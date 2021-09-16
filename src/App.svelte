@@ -8,6 +8,7 @@
       <article>
         <div>
           <button class="action-btn" on:click={()=> showAddModal = true}>Add Memo</button>
+          <input type="text" class="custom-input search" placeholder="Enter name" on:input={searchNote}>
         </div>
         {#each Memos as note, i }
           <Note
@@ -24,13 +25,12 @@
     </section>
 
     {#if Memo}
-      <section class="section_item" transition:fade="{{delay: 250, duration: 300}}">
-        <MemoPreview note={Memo}/>
+      <section class="section_item view_item" transition:fade="{{delay: 50, duration: 200}}">
+        <MemoPreview note={Memo} on:updateNote={updateMemo} />
       </section>
     {/if}
 
   </main>
-
 
   <!--  Modals -->
   { #if showAddModal}
@@ -82,15 +82,31 @@
   const createNewMemo = async (memo) => {
     const params = memo.detail.memoForm;
     const resp = await getApiResponse('memo', "POST", params, false);
-    if (resp && !resp.errors) {
+
+    if (resp && !(!!resp.errors || !!resp.error)) {
       triggerConfirmModal(false);
       showToast('Note has been added!', 'successTheme');
       await getDefaultMemos();
     } else {
-      showToast(`Note hasn't been added! ${resp.errors.map(er => er.msg)}`, 'warningTheme');
+      const errorString = resp.error ? resp.error : resp.errors.map(er => er.msg.concat())
+      showToast(`Note hasn't been added! resp.error ${errorString}`, 'warningTheme');
     }
     triggerModal(false);
   }
+
+  const updateMemo = async (e) => {
+     let {name, description, status} = e.detail;
+     let memoId = e.detail._id;
+      const resp = await getApiResponse(`memo/${memoId}`, 'PUT', {name, description, status}, false);
+    if (resp && !(!!resp.errors || !!resp.error)) {
+      showToast('Note has been Updated!', 'successTheme');
+      await getDefaultMemos();
+    } else {
+      const errorString = resp.error ? resp.error : resp.errors.map(er => er.msg.concat())
+      showToast(`Note hasn't been updated! resp.error ${errorString}`, 'warningTheme');
+    }
+  }
+
   const triggerModal = (status) => {
     showAddModal = status ? status.detail : false;
 
@@ -98,14 +114,14 @@
   const triggerConfirmModal = (status) => {
     confirmModal = status ? status.detail : false;
   }
-  const getDefaultMemos = async () => {
-    //@ts-ignore
-    Memos = await getApiResponse('memos', 'GET', null, false);
+  const getDefaultMemos = async (param) => {
+    const setUrl = param ? `memos?name=${param}` : 'memos';
+    Memos = await getApiResponse(setUrl, 'GET', null, false);
   }
 
   const getOneMemoById = async (id) => {
-    console.log(id, 'lfkdj');
-    Memo = await getApiResponse(`memo/${id}`, 'GET', null, false);
+    if(Memo && Memo._id === id) Memo = null;
+    else Memo = await getApiResponse(`memo/${id}`, 'GET', null, false);
   }
 
   const confirmDeleting = (e) => {
@@ -120,6 +136,14 @@
       await getDefaultMemos();
     } else showToast("Note hasn't been deleted!", 'warningTheme');
   }
+
+  const searchNote = (e) => {
+    let searchString = e.target.value
+    setTimeout(()=> {
+      getDefaultMemos(searchString)
+    },1000)
+  }
+
   /* end Methods */
 
   onMount(async () => {
@@ -147,7 +171,7 @@
     padding: 2rem;
   }
 
-  .main_area > .section_item:last-child {
+  .main_area > .section_item.view_item {
     flex: 0 1 auto;
   }
 

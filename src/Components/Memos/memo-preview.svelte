@@ -1,6 +1,19 @@
 <div class="memo_preview">
 
   <div class="memo_preview__inner">
+
+    <button class="action-btn success" on:click={updateNote}>
+      Update
+    </button>
+
+    <div class="memo_status-box">
+      <span>
+       Status:
+      </span>
+      <input class="memo_status-box" id="memo-status" type="checkbox"
+             bind:checked={note.status}>
+    </div>
+
     <div>
       <label for="memo-name"><b>Name:</b></label>
       <input id="memo-name" type="text" class="custom-input"
@@ -18,16 +31,8 @@
           bind:value={note.description}></textarea>
     </div>
 
-    <div class="memo_status-box">
-      <span>
-       Status:
-      </span>
-        <input class="memo_status-box" id="memo-status" type="checkbox"
-          bind:checked={note.status}>
-    </div>
-
     <div>
-      <b>Created</b>
+      <i>Created: </i>
       <code>
         {formatedDate}
       </code>
@@ -38,10 +43,17 @@
 </div>
 
 <script>
+import dayjs from "dayjs"
+import {createEventDispatcher} from "svelte";
 
   export let note = null;
-  $:formatedDate = note && note.createdAt;
+  $:formatedDate = note && dayjs(note.createdAt).format('DD.MM.YYYY, HH:mm');
 
+  const dispatch = createEventDispatcher();
+
+  const updateNote = () => {
+    dispatch('updateNote', note)
+  }
 
 </script>
 
