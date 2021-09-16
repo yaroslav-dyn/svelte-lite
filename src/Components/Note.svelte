@@ -21,11 +21,11 @@
 </script>
 
 <div class="personal-cart">
-    <div>{orderNumber}. &nbsp;{name}</div>
+    <div class="header_cart" on:click>{orderNumber}. &nbsp;{name}</div>
     <div>{description || ''}</div>
     <div class="status {status ? 'complete' : 'pending'}">{statusHru}</div>
     <div>
-      <i on:click|self={onDeleteItem(noteID)} class="memo-icons icon_close attention"></i>
+        <i on:click|self={onDeleteItem(noteID)} class="memo-icons icon_close attention"></i>
     </div>
 </div>
 
@@ -35,10 +35,10 @@
     display: flex;
     justify-content: space-between;
     background-color: #fff;
-    border-radius: 6px;
+    border-radius: 3px;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-    padding: 1rem;
-    margin-bottom: 8px;
+    padding: 1.4rem;
+    margin-bottom: 4px;
   }
   .personal-cart > div:first-child {
     flex-basis: 40%;
@@ -48,6 +48,10 @@
   }
   .personal-cart > div:last-child {
     text-align: right;
+  }
+
+  .header_cart {
+    cursor: pointer;
   }
 
   .status.complete {

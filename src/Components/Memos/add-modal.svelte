@@ -1,6 +1,6 @@
 <script>
 
-  import { createEventDispatcher } from 'svelte';
+  import {createEventDispatcher} from 'svelte';
 
   let memoForm = {
     name: null,
@@ -29,22 +29,24 @@
 
 <div class="add_modal">
   <div class="add_modal__content">
-    <div class="close_icon" on:click={closeModal}>x</div>
-    <form class="memo-controls-form"  name="memo-controls-form" on:submit|preventDefault>
+    <div class="close_icon__wrapper">
+      <span class="close_icon" on:click={closeModal}>x</span>
+    </div>
+    <form class="memo-controls-form" name="memo-controls-form" on:submit|preventDefault>
       <label for="name"> Enter memo name </label>
-      <input id="name" type="text" name="name" bind:value={memoForm.name} >
-     
+      <input id="name" type="text" name="name" bind:value={memoForm.name}>
+
       <label for="description"> Description </label>
       <textarea
-        class="description_field"
-        rows="4"
-        id="description"
-        name="description"
-        style="resize: none"
-        bind:value={memoForm.description}></textarea>
-    
+          class="description_field"
+          rows="4"
+          id="description"
+          name="description"
+          style="resize: none"
+          bind:value={memoForm.description}></textarea>
+
       <label for="status"> Status <input id="status" type="checkbox" bind:checked={statusMemo}></label>
-    
+
       <button :disabled="{disabledButton}" class="action-btn add-memo" on:click={createMemo}>Create</button>
     </form>
   </div>
@@ -60,22 +62,30 @@
     z-index: 100;
     padding: 1.2rem;
     border-radius: 6px;
-    background-color: rgba(0,0,0,0.6);  
+    background-color: rgba(0, 0, 0, 0.6);
   }
-   .add_modal__content {
+
+  .add_modal__content {
     padding: 2rem;
     position: relative;
     background: #fff;
-    box-shadow: 0 0 2px rgba(0,0,0,0.6);
-    top: calc( 50% - 200px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+    top: calc(50% - 200px);
     left: calc(50% - 200px);
     width: 400px;
-   }
-   .memo-controls-form > input {
-      width: 100%;
-      padding: 8px 16px;
-      border-radius: 4px;
-   }
+  }
+
+  .close_icon__wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .memo-controls-form > input {
+    width: 100%;
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+
   .memo-controls-form > label {
     margin-bottom: 8px;
   }
@@ -85,16 +95,17 @@
     margin: 1rem 0;
   }
 
-.close_icon {
-  text-align: right;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-}
-.description_field {
-  resize: none;
-  width: 100%;
-  font-size: 14px;
-}
+  .close_icon {
+    text-align: right;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .description_field {
+    resize: none;
+    width: 100%;
+    font-size: 14px;
+  }
 
 </style>

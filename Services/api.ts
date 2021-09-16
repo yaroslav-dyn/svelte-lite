@@ -18,9 +18,9 @@ export const getApiResponse = async (currentUrl: string, reqType: string, params
       headers: defaultHeaders,
       body: null
     }
-    if(params) paramsObj = {...paramsObj, body: JSON.stringify(params)}
+    if (params) paramsObj = {...paramsObj, body: JSON.stringify(params)}
     const response = await window.fetch(apiUrl + currentUrl, paramsObj);
-     return responseHandler(response, clearResponse);
+    return responseHandler(response, clearResponse);
   } catch (error) {
     new Error(error.statusText);
   }

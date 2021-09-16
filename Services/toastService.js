@@ -1,6 +1,10 @@
-
 import {toast} from '@zerodevx/svelte-toast'
 
+const defaultToastOpt = {
+  duration: 8000,
+  initial: 1,
+  pausable: true,
+}
 
 const selectedTheme =  {
   warningTheme :{
@@ -11,17 +15,15 @@ const selectedTheme =  {
     '--toastBackground': '#48BB78',
         '--toastBarBackground': '#2F855A'
   }
-
-}
-
-
+};
 
 export const showToast = (message, theme) => {
-  const th = selectedTheme.theme
-  const opt = {
+  const th = selectedTheme[theme]
+  const currentTheme = {
     theme: th
   }
-  toast.push(message  , opt);
+  Object.assign(defaultToastOpt, currentTheme)
+  toast.push(message  , defaultToastOpt);
 }
 
 
