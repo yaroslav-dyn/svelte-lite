@@ -162,3 +162,12 @@ div {
   width: 100%;
 }
 
+.centered-text {
+  text-align: center;
+}
+.left-text {
+  text-align: left;
+}
+.right-text {
+  text-align: right;
+}

@@ -1,15 +1,14 @@
-<script>
+<script lang="ts">
   import {createEventDispatcher} from 'svelte';
+  const dispatch = createEventDispatcher();
 
   let memoForm = {
     name: null,
     description: null,
     status: false
   }
-
-  let statusMemo = false;
-
-  const dispatch = createEventDispatcher();
+  let disabled:boolean;
+  let statusMemo:boolean;
 
   $: disabled = !(!!memoForm.name);
 
@@ -23,6 +22,7 @@
   const closeModal = () => {
     dispatch('closeModal', false)
   }
+
 
 </script>
 
@@ -50,7 +50,7 @@
         disabled="{disabled}"
         class="action-btn add-memo"
         on:click={createMemo}>
-        Create
+        Create note
       </button>
 
     </form>

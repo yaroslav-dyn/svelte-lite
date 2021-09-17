@@ -1,0 +1,26 @@
+$errorText: darkred;
+$warningText: darkorange;
+
+//helpers
+.flex-grid {
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+  &.column {
+    flex-direction: column;
+  }
+  &.row {
+    flex-direction: row;
+  }
+  &.adjust {
+    &-center {
+      align-items: center;
+    }
+  }
+}
+
+.action-icon {
+  cursor: pointer;
+}
+
+

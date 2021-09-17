@@ -6,3 +6,8 @@ export interface MemosItem {
   description: string;
   __v:         number;
 }
+
+export enum TemplateType {
+  list = "list",
+  apps = "apps"
+}

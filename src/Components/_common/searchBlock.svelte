@@ -5,11 +5,11 @@
     on:keyup={({ target: { value } }) => debounceValue(value)}>
 
 
-<script>
+<script lang="ts">
   import {createEventDispatcher} from "svelte";
 
   let timer = null;
-  const debounceTime = 750;
+  const debounceTime:number = 750;
 
   const dispatch = createEventDispatcher();
 

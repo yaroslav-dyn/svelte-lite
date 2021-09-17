@@ -1,3 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+export var TemplateType;
+(function (TemplateType) {
+    TemplateType["list"] = "list";
+    TemplateType["apps"] = "apps";
+})(TemplateType || (TemplateType = {}));
 //# sourceMappingURL=General.js.map

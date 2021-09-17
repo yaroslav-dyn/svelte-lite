@@ -3,7 +3,7 @@ import {boolean_attributes} from "svelte/types/compiler/compile/render_ssr/handl
 const apiUrl = 'http://localhost:4000/api/';
 const defaultHeaders: HeadersInit = new Headers();
 defaultHeaders.set('Content-Type', 'application/json');
-import {MemosItem} from "../src/Interfaces/General";
+import type {MemosItem} from "../src/Interfaces/General";
 
 const responseHandler = (response, clearResponse?) => {
   if (!response.ok) {

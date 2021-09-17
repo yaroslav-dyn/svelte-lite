@@ -1,23 +1,23 @@
 <div class="base_modal confirm_modal">
 
-    <div class="base_modal__content">
+  <div class="base_modal__content">
 
-        <h3 class={'base_modal__title ' + confirmType}>
-            {title}
-        </h3>
+    <h3 class={`base_modal__title ${confirmType}`}>
+      {title}
+    </h3>
 
-        <p class="base_modal__message">
-            {message}
-        </p>
+    <p class="base_modal__message centered-text">
+      {message}
+    </p>
 
-        {#if hasControls}
-            <div class="base_modal__controls">
-                <button class="action-btn default" on:click={closeAction}>No</button>
-                <button class="action-btn dark" on:click={confirmAction}>Yes</button>
-            </div>
-        {/if}
+    {#if hasControls}
+      <div class="base_modal__controls">
+        <button class="action-btn default" on:click={closeAction}>No</button>
+        <button class="action-btn dark" on:click={confirmAction}>Yes</button>
+      </div>
+    {/if}
 
-    </div>
+  </div>
 
 </div>
 
@@ -42,38 +42,42 @@
 
 </script>
 
-<style>
+<style lang="scss">
+  @import '../../scss/vars';
 
-  .base_modal__title {
-    font-size: 1.8rem;
-    margin: 0;
-    padding: 1.2rem;
-    text-align: center;
-  }
+  .base_modal {
+    &__title {
+      font-size: 1.8rem;
+      margin: 0;
+      padding: 1.2rem;
+      text-align: center;
 
-  .base_modal__title.normal {
-    color: #000;
-  }
+      &.normal {
+        color: #000;
+      }
 
-  .base_modal__title.warning {
-    color: darkorange;
-  }
+      &.warning {
+        color: $warningText;
+      }
 
-  .base_modal__title.error {
-    color: darkred;
-  }
+      &.error {
+        color: $errorText;
+      }
+    }
 
-  .base_modal__message {
-    margin: 0;
-    padding: 1.1rem;
-  }
+    &__message {
+      margin: 0;
+      padding: 1.1rem;
+    }
 
-  .base_modal__controls {
-    display: flex;
-    justify-content: space-around;
-  }
-  .base_modal__controls > .action-btn {
-    flex-basis: 30%;
+    &__controls {
+      display: flex;
+      justify-content: space-around;
+
+      > .action-btn {
+        flex-basis: 30%;
+      }
+    }
   }
 
 </style>
