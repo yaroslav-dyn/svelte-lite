@@ -8,7 +8,7 @@
       <article>
         <div>
           <button class="action-btn" on:click={()=> showAddModal = true}>Add Memo</button>
-          <input type="text" class="custom-input search" placeholder="Enter name" on:input={searchNote}>
+          <SearchBlock on:searchQuery={searchNote} />
         </div>
         {#each Memos as note, i }
           <Note
@@ -48,7 +48,6 @@
     />
   {/if}
 
-
   <SvelteToast/>
 
 </div>
@@ -67,6 +66,7 @@
   import {SvelteToast, toast} from '@zerodevx/svelte-toast';
   import {showToast} from '../Services/toastService';
   import {fade} from 'svelte/transition';
+  import SearchBlock from "./Components/_common/searchBlock.svelte"
 
   /* DATA  */
   //@ts-ignore
@@ -78,7 +78,6 @@
   /* END DATA  */
 
   /* Methods */
-
   const createNewMemo = async (memo) => {
     const params = memo.detail.memoForm;
     const resp = await getApiResponse('memo', "POST", params, false);
@@ -100,6 +99,7 @@
       const resp = await getApiResponse(`memo/${memoId}`, 'PUT', {name, description, status}, false);
     if (resp && !(!!resp.errors || !!resp.error)) {
       showToast('Note has been Updated!', 'successTheme');
+      Memo = null;
       await getDefaultMemos();
     } else {
       const errorString = resp.error ? resp.error : resp.errors.map(er => er.msg.concat())
@@ -115,7 +115,7 @@
     confirmModal = status ? status.detail : false;
   }
   const getDefaultMemos = async (param) => {
-    const setUrl = param ? `memos?name=${param}` : 'memos';
+    const setUrl = param ? `memos?${param}` : 'memos';
     Memos = await getApiResponse(setUrl, 'GET', null, false);
   }
 
@@ -137,11 +137,8 @@
     } else showToast("Note hasn't been deleted!", 'warningTheme');
   }
 
-  const searchNote = (e) => {
-    let searchString = e.target.value
-    setTimeout(()=> {
-      getDefaultMemos(searchString)
-    },1000)
+  const searchNote = async (e) => {
+    await getDefaultMemos(`name=${e.detail}`);
   }
 
   /* end Methods */
@@ -152,7 +149,6 @@
     //@ts-ignore
     Memos = await getApiResponse('memos', 'GET', null, false);
   });
-
 
 </script>
 

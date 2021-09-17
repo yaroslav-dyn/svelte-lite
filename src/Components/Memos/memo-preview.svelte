@@ -2,7 +2,7 @@
 
   <div class="memo_preview__inner">
 
-    <button class="action-btn success" on:click={updateNote}>
+    <button class="action-btn success w100" on:click={updateNote}>
       Update
     </button>
 
@@ -32,10 +32,10 @@
     </div>
 
     <div>
-      <i>Created: </i>
-      <code>
-        {formatedDate}
-      </code>
+      <small>
+        <i class="material-icons">schedule</i>
+      </small>
+      {formatedDate}
     </div>
 
   </div>
@@ -47,7 +47,7 @@ import dayjs from "dayjs"
 import {createEventDispatcher} from "svelte";
 
   export let note = null;
-  $:formatedDate = note && dayjs(note.createdAt).format('DD.MM.YYYY, HH:mm');
+  $:formatedDate = note && dayjs(note.updatedAt).format('DD.MM.YYYY, HH:mm');
 
   const dispatch = createEventDispatcher();
 

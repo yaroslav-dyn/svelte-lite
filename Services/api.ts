@@ -1,3 +1,5 @@
+import {boolean_attributes} from "svelte/types/compiler/compile/render_ssr/handlers/shared/boolean_attributes";
+
 const apiUrl = 'http://localhost:4000/api/';
 const defaultHeaders: HeadersInit = new Headers();
 defaultHeaders.set('Content-Type', 'application/json');
@@ -11,7 +13,12 @@ const responseHandler = (response, clearResponse?) => {
 }
 
 
-export const getApiResponse = async (currentUrl: string, reqType: string, params?: any | null, clearResponse?: boolean): Promise<MemosItem> => {
+export const getApiResponse = async (
+    currentUrl: string,
+    reqType: string,
+    params?: any | null,
+    clearResponse?: boolean):
+    Promise<MemosItem> => {
   try {
     let paramsObj = {
       method: reqType,
