@@ -1,5 +1,6 @@
 
 export interface MemosItem {
+error: any;
   status:      boolean;
   _id:         string;
   name:        string;

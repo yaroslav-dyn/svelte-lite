@@ -12,8 +12,8 @@
 
     {#if hasControls}
       <div class="base_modal__controls">
-        <button class="action-btn default" on:click={closeAction}>No</button>
-        <button class="action-btn dark" on:click={confirmAction}>Yes</button>
+        <button class="action-btn warn" on:click={closeAction}>No</button>
+        <button class="action-btn success" on:click={confirmAction}>Yes</button>
       </div>
     {/if}
 
@@ -39,7 +39,6 @@
         dispatch('closeModal');
     }
 
-
 </script>
 
 <style lang="scss">
@@ -57,11 +56,11 @@
       }
 
       &.warning {
-        color: $warningText;
+        color: $warning-text;
       }
 
       &.error {
-        color: $errorText;
+        color: $error-text;
       }
     }
 

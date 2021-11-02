@@ -1,5 +1,7 @@
 import "svelte/types/compiler/compile/render_ssr/handlers/shared/boolean_attributes";
-const apiUrl = 'http://localhost:4000/api/';
+const serverUrl = "https://memo-silver-app.herokuapp.com/api/"
+const localUrl = "http://localhost:4000/api/"
+const apiUrl = serverUrl;
 const defaultHeaders = new Headers();
 defaultHeaders.set('Content-Type', 'application/json');
 const responseHandler = (response, clearResponse) => {

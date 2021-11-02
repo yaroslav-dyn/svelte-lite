@@ -1,63 +1,77 @@
+<script>
+  import dayjs from "dayjs";
+  import {createEventDispatcher} from "svelte";
+
+  export let note = null;
+  $: formatedDate = note && dayjs(note.updatedAt).format("DD.MM.YYYY, HH:mm");
+
+  const dispatch = createEventDispatcher();
+
+  const updateNote = () => {
+    dispatch("updateNote", note);
+  };
+</script>
+
 <div class="memo_preview">
-
   <div class="memo_preview__inner">
-
-    <button class="action-btn success w100" on:click={updateNote}>
-      Update
-    </button>
-
-    <div class="memo_status-box">
-      <span>Status:</span>
-      <input class="memo_status-box" id="memo-status" type="checkbox"
-             bind:checked={note.status}>
-    </div>
-
-    <div class="flex-grid adjust-center">
-      <i class="material-icons">schedule</i>
-      {formatedDate}
-    </div>
-
     <div>
       <label for="memo-name"><b>Name:</b></label>
-      <input id="memo-name" type="text" class="custom-input"
-             bind:value={note.name}>
+      <br>
+      <input
+        id="memo-name"
+        type="text"
+        class="custom-input"
+        bind:value={note.name}
+      />
     </div>
 
     <div>
-      <label for="memo-description"><b>Name:</b></label>
+      <label for="memo-description"><b>Description:</b></label>
+      <br>
       <textarea
           class="custom-input area description_field"
           rows="4"
           id="memo-description"
           name="description"
-          style="resize: none"
-          bind:value={note.description}></textarea>
+          bind:value={note.description}
+      />
     </div>
 
-  </div>
+    <div>
+      <div class="flex-grid adjust-center justify-s-side-in memo_status-box__time-edit">
+        <div class="memo_status-box">
+          <span class="memo_status-box__label">Status:</span>
+          <input
+            class="memo_status-box__input"
+            id="memo-status"
+            type="checkbox"
+            bind:checked={note.status}
+          />
+        </div>
 
+        <div class="flex-grid adjust-center">
+          <i class="material-icons">schedule</i>
+          {formatedDate}
+        </div>
+      </div>
+    </div>
+
+    <button class="action-btn success w100" on:click={updateNote}>
+      Update
+    </button>
+
+    <button class="action-btn warn w100" on:click={() => dispatch('closeView')}>
+      close
+    </button>
+  </div>
 </div>
 
-<script>
-  import dayjs from "dayjs"
-  import {createEventDispatcher} from "svelte";
-
-  export let note = null;
-  $:formatedDate = note && dayjs(note.updatedAt).format('DD.MM.YYYY, HH:mm');
-
-  const dispatch = createEventDispatcher();
-
-  const updateNote = () => {
-    dispatch('updateNote', note)
-  }
-
-</script>
-
 <style lang="scss">
-  @import '../../scss/vars';
+  @import "../../scss/vars";
 
   .memo_preview {
-    /*background: #f6f6f6;*/
+    border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
   }
 
   .memo_preview__inner {
@@ -68,6 +82,19 @@
 
   .memo_status-box {
     display: flex;
-  }
+    align-items: center;
 
+    &__label {
+      margin-right: 10px;
+      display: inline-block;
+    }
+
+    &__input {
+      margin: 0;
+    }
+
+    &__time-edit {
+      padding: 14px 0;
+    }
+  }
 </style>

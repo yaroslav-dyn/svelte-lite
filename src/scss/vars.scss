@@ -1,5 +1,15 @@
-$errorText: darkred;
-$warningText: darkorange;
+$error-text: darkred;
+$warning-text: darkorange;
+$blue-theme: #1091cb;
+$success-text: limegreen;
+
+
+$small-device: 420px;
+$medium-device: 759px;
+$desktop-device: 969px;
+
+//colors
+
 
 //helpers
 .flex-grid {
@@ -17,10 +27,41 @@ $warningText: darkorange;
       align-items: center;
     }
   }
+  &.justify {
+    &-left {justify-content: left;}
+    &-center {justify-content: center;}
+    &-right {justify-content: right;}
+    &-s-side-in {justify-content: space-between;}
+    &-s-side-out {justify-content: space-around;}
+  }
 }
 
 .action-icon {
   cursor: pointer;
 }
 
+// Mobile
+.mobile100 {
+  width: auto;
+}
+.hide-mobile {
+  display: block;
+}
+.hide-desktop {
+  display: none;
+}
+@media screen and (max-width: $medium-device) {
+  .mobile100 {
+    width: 100%;
+  }
+  .hide-mobile {
+    display: none;
+  }
+  .hide-desktop {
+    display: block;
+  }
+}
+//@media screen and (min-width: $desktop-device) {
+//
+//}
 

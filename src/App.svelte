@@ -1,183 +1,235 @@
 <!-- HTML-->
 <div class="memo-app">
-
-  <Header apiStatus={apiStatus}/>
+  <Header {apiStatus}/>
 
   <main class={`main_area ${previewGrid}`}>
-    <section class="section_item">
-      <article>
-        <div class="flex-grid">
-          <button class="action-btn" on:click={() => showAddModal = true}>Add Memo</button>
-          <i class="material-icons action-icon grid-icon" on:click={()=> changeTemplate('apps')}>apps</i>
-          <i class="material-icons action-icon grid-icon" on:click={()=> changeTemplate('list')}>list</i>
-          <SearchBlock on:searchQuery={searchNote}/>
-        </div>
-        {#each Memos as note, i }
-          <Note
+    {#if !Memo}
+      <section class="section_item"
+       transition:fade="{{delay: 50, duration: 150}}">
+        <article>
+          <button
+            class="action-btn mobile100 add_btn" on:click={() => (showAddModal = true)}>
+            Add Memo
+          </button
+          >
+          <div class="flex-grid">
+            <i class="material-icons action-icon grid-icon hide-mobile"
+               on:click={() => changeTemplate("apps")}>
+              apps
+            </i>
+            <i class="material-icons action-icon grid-icon hide-mobile"
+               on:click={() => changeTemplate("list")}>
+              list
+            </i>
+            <SearchBlock on:searchQuery={searchNote}/>
+          </div>
+          {#each Memos as note, i}
+            <Note
               name={note.name}
               description={note.description}
-              orderNumber={i+1}
+              orderNumber={i + 1}
               status={note.status}
               noteID={note._id}
               on:click={getOneMemoById(note._id)}
               on:onNoteDelete={confirmDeleting}
-          />
-        {/each}
-      </article>
-    </section>
+            />
+          {/each}
+        </article>
+      </section>
 
-    {#if Memo}
-      <section class="section_item view_item" transition:fade="{{delay: 50, duration: 200}}">
-        <MemoPreview note={Memo} on:updateNote={updateMemo}/>
+    {:else if Memo}
+      <section
+        class="section_item view_item"
+        transition:slide="{{delay: 200, duration: 150, easing: bounceInOut}}">
+        <MemoPreview note={Memo} on:updateNote={updateMemo} on:closeView={closePreview}/>
       </section>
     {/if}
-
   </main>
 
   <!--  Modals -->
-  { #if showAddModal}
+  {#if showAddModal}
     <AddModal on:addMemo={createNewMemo} on:closeModal={triggerModal}/>
   {/if}
 
   {#if confirmModal}
     <ConfirmModal
-        title={confirmModal.title}
-        message={confirmModal.message}
-        hasControls={confirmModal.controls}
-        confirmType="warning"
-        on:confirmAction={ deleteMemo(confirmModal.data) }
-        on:closeModal={ triggerConfirmModal}
+      title={confirmModal.title}
+      message={confirmModal.message}
+      hasControls={confirmModal.controls}
+      confirmType="warning"
+      on:confirmAction={deleteMemo(confirmModal.data)}
+      on:closeModal={triggerConfirmModal}
     />
   {/if}
 
   <SvelteToast/>
-
 </div>
 
-<!-- END HTML-->
-
-
 <script lang="ts">
-    import Header from "./Components/_common/Header.svelte"
-    import Note from "./Components/Note.svelte";
-    import MemoPreview from "./Components/Memos/memo-preview.svelte"
-    import AddModal from "./Components/Memos/add-modal.svelte";
-    import ConfirmModal from "./Components/_common/confirm-modal.svelte";
-    import {onMount} from "svelte";
-    import {getApiResponse} from "../Services/api";
-    import {SvelteToast, toast} from '@zerodevx/svelte-toast';
-    import {showToast} from '../Services/toastService';
-    import {fade} from 'svelte/transition';
-    import SearchBlock from "./Components/_common/searchBlock.svelte"
-    import {MemosItem, TemplateType} from "./Interfaces/General";
+  import {slide, fade} from 'svelte/transition';
+  import {bounceInOut} from 'svelte/easing';
+  import {SvelteToast} from "@zerodevx/svelte-toast";
+  import {onMount} from "svelte";
+  import {getApiResponse} from "../Services/api";
+  import {showToast} from "../Services/toastService";
+  import AddModal from "./Components/Memos/add-modal.svelte";
+  import MemoPreview from "./Components/Memos/memo-preview.svelte";
+  import Note from "./Components/Note.svelte";
+  import ConfirmModal from "./Components/_common/confirm-modal.svelte";
+  import Header from "./Components/_common/Header.svelte";
+  import SearchBlock from "./Components/_common/searchBlock.svelte";
+  import {MemosItem, TemplateType} from "./Interfaces/General";
 
-    /* DATA  */
-    //@ts-ignore
-    let Memos: MemosItem = [];
-    let Memo: MemosItem = null;
-    let apiStatus = null;
-    let showAddModal = false;
-    let confirmModal = null;
-    let previewGrid: TemplateType = TemplateType.apps
-    /* END DATA  */
+  /* DATA  */
+  //@ts-ignore
+  let Memos: MemosItem = [];
+  let Memo: MemosItem = null;
+  let apiStatus = null;
+  let showAddModal = false;
+  let confirmModal = null;
+  let previewGrid: TemplateType = TemplateType.list;
+  /* END DATA  */
 
-    /* Methods */
-    const createNewMemo = async (memo) => {
-        const params = memo.detail.memoForm;
-        const resp = await getApiResponse('memo', "POST", params, false);
+  /* Methods */
+  const createNewMemo = async (memo) => {
+    const params = memo.detail.memoForm;
+    const resp = await getApiResponse("memo", "POST", params, false);
 
-        if (resp && !(!!resp.errors || !!resp.error)) {
-            triggerConfirmModal(false);
-            showToast('Note has been added!', 'successTheme');
-            await getDefaultMemos(null);
-        } else {
-            const errorString = resp.error ? resp.error : resp.errors.map(er => er.msg.concat())
-            showToast(`Note hasn't been added! resp.error ${errorString}`, 'warningTheme');
-        }
-        triggerModal(false);
+    if (resp && !(!!resp.errors || !!resp.error)) {
+      triggerConfirmModal(false);
+      showToast("Note has been added!", "successTheme");
+      await getDefaultMemos(null);
+    } else {
+      const errorString = resp.error ? resp.error
+          : resp.errors.map((er) => er.msg.concat());
+      showToast(
+          `Note hasn't been added! resp.error ${errorString}`,
+          "warningTheme"
+      );
     }
-
-    const updateMemo = async (e) => {
-        let {name, description, status} = e.detail;
-        let memoId = e.detail._id;
-        const resp = await getApiResponse(`memo/${memoId}`, 'PUT', {name, description, status}, false);
-        if (resp && !(!!resp.errors || !!resp.error)) {
-            showToast('Note has been Updated!', 'successTheme');
-            Memo = null;
-            await getDefaultMemos(null);
-        } else {
-            const errorString = resp.error ? resp.error : resp.errors.map(er => er.msg.concat())
-            showToast(`Note hasn't been updated! resp.error ${errorString}`, 'warningTheme');
-        }
+    triggerModal(false);
+  };
+  const updateMemo = async (e) => {
+    let {name, description, status} = e.detail;
+    let memoId = e.detail._id;
+    const resp = await getApiResponse(
+        `memo/${memoId}`,
+        "PUT",
+        {name, description, status},
+        false
+    );
+    if (resp && !(!!resp.errors || !!resp.error)) {
+      showToast("Note has been Updated!", "successTheme");
+      Memo = null;
+      await getDefaultMemos(null);
+    } else {
+      const errorString = resp.error
+          ? resp.error
+          : resp.errors.map((er) => er.msg.concat());
+      showToast(
+          `Note hasn't been updated! resp.error ${errorString}`,
+          "warningTheme"
+      );
     }
+  };
+  const closePreview = () => {
+    Memo = null;
+  };
+  const triggerModal = (status) => {
+    showAddModal = status ? status.detail : false;
+  };
+  const triggerConfirmModal = (status) => {
+    confirmModal = status ? status.detail : false;
+  };
+  const getDefaultMemos = async (param: string) => {
+    const setUrl = param ? `memos?${param}` : "memos";
+    Memos = await getApiResponse(setUrl, "GET", null, false);
+  };
+  const getOneMemoById = async (id: string) => {
+    if (Memo && Memo._id === id) Memo = null;
+    else Memo = await getApiResponse(`memo/${id}`, "GET", null, false);
+  };
+  const confirmDeleting = (e) => {
+    confirmModal = {
+      title: "Warning",
+      message: "You want to delete note?",
+      controls: true,
+      data: e,
+    };
+  };
+  const deleteMemo = async (data): Promise<void> => {
+    const params = data.detail;
+    const resp = await getApiResponse(
+        `memo/${params.id}`,
+        "DELETE",
+        null,
+        false
+    );
+    if (resp) {
+      triggerConfirmModal(false);
+      showToast("Note has been deleted!", "successTheme");
+      await getDefaultMemos(null);
+    } else showToast("Note hasn't been deleted!", "warningTheme");
+  };
+  const searchNote = async (e) => {
+    await getDefaultMemos(`name=${e.detail}`);
+  };
+  const changeTemplate = async (e) => {
+    previewGrid = e;
+  };
+  /* end Methods */
 
-    const triggerModal = (status) => {
-        showAddModal = status ? status.detail : false;
-
-    }
-    const triggerConfirmModal = (status) => {
-        confirmModal = status ? status.detail : false;
-    }
-    const getDefaultMemos = async (param) => {
-        const setUrl = param ? `memos?${param}` : 'memos';
-        Memos = await getApiResponse(setUrl, 'GET', null, false);
-    }
-
-    const getOneMemoById = async (id) => {
-        if (Memo && Memo._id === id) Memo = null;
-        else Memo = await getApiResponse(`memo/${id}`, 'GET', null, false);
-    }
-
-    const confirmDeleting = (e) => {
-        confirmModal = {title: 'Warning', message: 'You want to delete note?', controls: true, data: e}
-    }
-    const deleteMemo = async (data) => {
-        const params = data.detail;
-        const resp = await getApiResponse(`memo/${params.id}`, "DELETE", null, false);
-        if (resp) {
-            triggerConfirmModal(false);
-            showToast("Note has been deleted!", 'successTheme');
-            await getDefaultMemos(null);
-        } else showToast("Note hasn't been deleted!", 'warningTheme');
-    }
-
-    const searchNote = async (e) => {
-        await getDefaultMemos(`name=${e.detail}`);
-    }
-
-    const changeTemplate = async (e) => {
-        previewGrid = e
-    }
-
-    /* end Methods */
-
-    onMount(async () => {
-        await getDefaultMemos(null);
-        apiStatus = await getApiResponse('status', 'GET', null, true)
-        Memos = await getApiResponse('memos', 'GET', null, false);
-    });
-
+  onMount(async () => {
+    await getDefaultMemos(null);
+    apiStatus = await getApiResponse("status", "GET", null, true);
+    Memos = await getApiResponse("memos", "GET", null, false);
+  });
 </script>
 
 <style lang="scss">
-  @import './scss/vars';
+  @import "./scss/vars";
 
   main {
     padding: 1em;
   }
 
+  .add_btn {
+    padding: 14px 6px;
+    margin-bottom: 2rem;
+  }
+
   .main_area {
     display: flex;
     flex-direction: row;
+    padding: 1rem;
+
     &.apps {
       flex-direction: row;
+
+      .view_item {
+        padding-left: 1rem;
+      }
     }
+
     &.list {
       flex-direction: column;
+      align-items: stretch;
+
+      :global(.section_item) {
+        min-width: 100%;
+      }
     }
-    > .section_item {
+
+    @media only screen and(max-width: $small-device) {
+      padding: 2rem 1rem;
+      &.apps,
+      &.list {
+        flex-direction: column;
+      }
+    }
+
+    > :global(.section_item) {
       flex: 1;
-      padding: 2rem;
 
       &.view_item {
         flex: 0 1 auto;
@@ -192,10 +244,13 @@
     }
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: $desktop-device) {
     .main_area {
-      max-width: none;
       flex-direction: row;
+    }
+    .add_btn {
+      padding: 14px 6px;
+      margin-bottom: 1rem;
     }
   }
 </style>
