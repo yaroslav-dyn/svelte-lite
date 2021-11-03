@@ -1,17 +1,3 @@
-<script>
-  import dayjs from "dayjs";
-  import {createEventDispatcher} from "svelte";
-
-  export let note = null;
-  $: formatedDate = note && dayjs(note.updatedAt).format("DD.MM.YYYY, HH:mm");
-
-  const dispatch = createEventDispatcher();
-
-  const updateNote = () => {
-    dispatch("updateNote", note);
-  };
-</script>
-
 <div class="memo_preview">
   <div class="memo_preview__inner">
     <div>
@@ -40,13 +26,13 @@
     <div>
       <div class="flex-grid adjust-center justify-s-side-in memo_status-box__time-edit">
         <div class="memo_status-box">
-          <span class="memo_status-box__label">Status:</span>
-          <input
-            class="memo_status-box__input"
-            id="memo-status"
-            type="checkbox"
-            bind:checked={note.status}
+<!--          <span class="memo_status-box__label">Status:</span>-->
+
+          <MemoStatusesView
+              statusMemo="{note.status}"
+              on:changeStatusInput={onChangeStatusMemo}
           />
+
         </div>
 
         <div class="flex-grid adjust-center">
@@ -65,6 +51,26 @@
     </button>
   </div>
 </div>
+
+<script>
+  import dayjs from "dayjs";
+  import MemoStatusesView from '../_common/atoms/memoStatusesView.svelte';
+  import {createEventDispatcher} from "svelte";
+
+  export let note = null;
+  $: formatedDate = note && dayjs(note.updatedAt).format("DD.MM.YYYY, HH:mm");
+
+  const dispatch = createEventDispatcher();
+
+
+  const onChangeStatusMemo = (status) => {
+    note.status = status.detail;
+  }
+
+  const updateNote = () => {
+    dispatch("updateNote", note);
+  };
+</script>
 
 <style lang="scss">
   @import "../../scss/vars";

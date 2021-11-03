@@ -1,4 +1,4 @@
-<label for="status">Status:</label>
+<label for="status">{title}</label>
 <label for="status" class="flex-grid adjust-center">
   <input class="status_input" id="status" type="checkbox" on:change={emitStatus}>
   <i class="material-icons status {statusMemoInput ? 'complete' : 'pending'}">
@@ -11,6 +11,7 @@
   import {createEventDispatcher, onMount} from "svelte";
 
   export let statusMemo = false;
+  export let title = '';
   let statusMemoInput = false;
   $: statusHru = statusMemoInput ? "––Complete" : "––Pending";
 

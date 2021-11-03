@@ -16,6 +16,7 @@
         bind:value={memoForm.description}></textarea>
 
       <MemoStatusesView
+        title="Status:"
         statusMemo="{statusMemo}"
         on:changeStatusInput={onChangeStatusMemo}
       />
