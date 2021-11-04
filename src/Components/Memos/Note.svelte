@@ -1,5 +1,5 @@
-<div class="personal-cart">
-  <div class="header_cart" on:click|self>{orderNumber}. &nbsp;{name}</div>
+<div class="personal-cart" on:click>
+  <div class="header_cart" >{orderNumber}. &nbsp;{name}</div>
   <div class="hide-mobile">{description || ""}</div>
   <div class="status hide-mobile {status ? 'complete' : 'pending'}">
     {statusHru}
@@ -11,7 +11,7 @@
   </div>
   <div>
     <i class="material-icons memo-icons icon_close attention"
-      on:click|self={onDeleteItem(noteID)}>
+      on:click|stopPropagation={onDeleteItem(noteID)}>
       clear
     </i>
     <!-- <i on:click|self class="material-icons memo-icons icon_close">launch</i> -->
@@ -37,7 +37,7 @@
 </script>
 
 <style lang="scss">
-  @import "../scss/vars";
+  @import "../../scss/vars";
 
   .personal-cart {
     display: flex;

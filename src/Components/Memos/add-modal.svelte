@@ -87,7 +87,7 @@
       position: relative;
       background: #fff;
       box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-      top: calc(50% - 200px);
+      top: 0;
       left: calc(50% - 200px);
       width: 400px;
       @media screen and (max-width: $medium-device) {
