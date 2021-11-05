@@ -1,3 +1,4 @@
+/** General Styles **/
 :root {
   --main-blue-color: #1091cb;
   --main-warn-color: darkorange;
@@ -23,7 +24,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
-div {
+div, header, footer, .main_area {
   box-sizing: border-box;
 }
 
@@ -67,7 +68,6 @@ input:disabled {
 .custom-input.area {
   resize: none;
 }
-
 
 button {
   color: #333;
@@ -151,35 +151,6 @@ div {
   color: forestgreen;
 }
 
-/*Main parts*/
-
-.header {
-  padding: 1.8rem;
-  background-color: #f6f6f6;
-  box-shadow: 0 -1px 0 #ccc;
-}
-
-.base_modal{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-  padding: 1.2rem;
-  border-radius: 6px;
-  background-color: rgba(0,0,0,0.6);
-}
-.base_modal__content {
-  padding: 2rem;
-  position: relative;
-  background: #fff;
-  box-shadow: 0 0 2px rgba(0,0,0,0.6);
-  top: calc( 50% - 200px);
-  left: calc(50% - 200px);
-  width: 400px;
-}
-
 /*Helpers*/
 .w100 {
   width: 100%;
@@ -202,3 +173,83 @@ div {
 .status.pending {
    color: var(--main-warn-color);
  }
+
+/*Main parts*/
+.header {
+  padding: 1.8rem;
+  background-color: #f6f6f6;
+  box-shadow: 0 -1px 0 #ccc;
+}
+
+.base_modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  padding: 1.2rem;
+  border-radius: 6px;
+  background-color: rgba(0,0,0,0.6);
+}
+.base_modal__content {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  position: relative;
+  background: #fff;
+  box-shadow: 0 0 2px rgba(0,0,0,0.6);
+  top: 0;
+  left: calc(50% - 200px);
+  width: 400px;
+  min-height: 30vh;
+}
+
+.header {
+  padding: 1.8rem;
+  background-color: #f6f6f6;
+  box-shadow: 0 -1px 0 #ccc;
+  max-height: 80px;
+}
+
+.footer {
+  max-height: 80px;
+  background-color: #f6f6f6;
+}
+
+.base_modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  padding: 1.2rem;
+  border-radius: 6px;
+  background-color: rgba(0,0,0,0.6);
+}
+.base_modal__content {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  position: relative;
+  background: #fff;
+  box-shadow: 0 0 2px rgba(0,0,0,0.6);
+  top: 0;
+  left: calc(50% - 200px);
+  width: 400px;
+  min-height: 30vh;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+
+.app-wrapper > .main-column {
+  flex: 1;
+}
+

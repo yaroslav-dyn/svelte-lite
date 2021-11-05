@@ -9,22 +9,22 @@
 
       <label for="description"> Description </label>
       <textarea
-        class="description_field"
-        rows="4"
-        id="description"
-        name="description"
-        bind:value={memoForm.description}></textarea>
+          class="description_field"
+          rows="4"
+          id="description"
+          name="description"
+          bind:value={memoForm.description}></textarea>
 
       <MemoStatusesView
-        title="Status:"
-        statusMemo="{statusMemo}"
-        on:changeStatusInput={onChangeStatusMemo}
+          title="Status:"
+          statusMemo="{statusMemo}"
+          on:changeStatusInput={onChangeStatusMemo}
       />
 
       <button
-        disabled="{disabled}"
-        class="action-btn add-memo"
-        on:click={createMemo}>
+          disabled="{disabled}"
+          class="action-btn add-memo"
+          on:click={createMemo}>
         Create note
       </button>
 
@@ -120,7 +120,7 @@
 
   .add-memo {
     width: 100%;
-    margin: 1rem 0;
+    margin: 1.4rem 0;
   }
 
   .close_icon {

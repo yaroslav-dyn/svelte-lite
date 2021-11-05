@@ -1,15 +1,15 @@
 <div class="base_modal confirm_modal">
 
   <div class="base_modal__content">
+    <div>
+      <h3 class={`base_modal__title ${confirmType}`}>
+        {title}
+      </h3>
 
-    <h3 class={`base_modal__title ${confirmType}`}>
-      {title}
-    </h3>
-
-    <p class="base_modal__message centered-text">
-      {message}
-    </p>
-
+      <p class="base_modal__message centered-text">
+        {message}
+      </p>
+    </div>
     {#if hasControls}
       <div class="base_modal__controls">
         <button class="action-btn warn" on:click={closeAction}>No</button>
@@ -45,6 +45,13 @@
   @import '../../scss/vars';
 
   .base_modal {
+    &__content {
+      @media screen and (max-width: $medium-device) {
+        width: 100%;
+        top: 0;
+        left: 0;
+      }
+    }
     &__title {
       font-size: 1.8rem;
       margin: 0;
@@ -70,9 +77,11 @@
     }
 
     &__controls {
+      flex: 1;
       display: flex;
       justify-content: space-around;
-
+      align-items: flex-end;
+      padding: 1.4rem 0;
       > .action-btn {
         flex-basis: 30%;
       }

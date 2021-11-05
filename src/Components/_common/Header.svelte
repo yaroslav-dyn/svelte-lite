@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header main-column">
   <div class="logo">
     <img src="../../../static/img/logo.svg" alt="logo" />
   </div>

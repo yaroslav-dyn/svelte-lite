@@ -1,5 +1,5 @@
 <!-- HTML-->
-<main class={`main_area`}>
+<main class="main_area main-column">
   {#if !Memo}
     <section class="section_item"
              transition:fade="{{delay: 50, duration: 150}}">
