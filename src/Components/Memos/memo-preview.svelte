@@ -43,7 +43,7 @@
     </div>
 
     <button class="action-btn success w100" on:click={updateNote}>
-      Update
+      Update 
     </button>
 
     <button class="action-btn warn w100" on:click={() => dispatch('closeView')}>

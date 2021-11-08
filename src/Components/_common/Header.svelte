@@ -1,6 +1,6 @@
 <header class="header main-column">
   <div class="logo">
-    <img src="../../../static/img/logo.svg" alt="logo" />
+    <img src="../../../img/logo.svg" alt="logo" />
   </div>
   <div class="api_status__container">
     <div class={apiStatus && apiStatus.status > 300 ? 'api_status error' : 'api_status success'}>

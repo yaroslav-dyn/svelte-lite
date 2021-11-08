@@ -1,9 +1,12 @@
-<div>
-  {someHeader}
-</div>
+<main class="main_area main-column">
+  <div>
+    {someHeader}
+  </div>
+</main>
+
 
 <script lang="ts">
 
-    const someHeader = 'Settings / ';
+    const someHeader = 'Settings';
 
 </script>   
