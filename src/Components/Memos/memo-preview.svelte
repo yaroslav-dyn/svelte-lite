@@ -1,8 +1,7 @@
 <div class="memo_preview">
   <div class="memo_preview__inner">
     <div>
-      <label for="memo-name"><b>Name:</b></label>
-      <br>
+      <label class="custom-label m_preview-label" for="memo-name"><b>Title:</b></label>
       <input
         id="memo-name"
         type="text"
@@ -12,8 +11,7 @@
     </div>
 
     <div>
-      <label for="memo-description"><b>Description:</b></label>
-      <br>
+      <label class="custom-label m_preview-label" for="memo-description"><b>Description:</b></label>
       <textarea
           class="custom-input area description_field"
           rows="4"
@@ -43,7 +41,7 @@
     </div>
 
     <button class="action-btn success w100" on:click={updateNote}>
-      Update 
+      Update
     </button>
 
     <button class="action-btn warn w100" on:click={() => dispatch('closeView')}>
@@ -102,5 +100,9 @@
     &__time-edit {
       padding: 14px 0;
     }
+  }
+  .m_preview-label {
+    margin-bottom: 0.8rem;
+    opacity: 0.9;
   }
 </style>

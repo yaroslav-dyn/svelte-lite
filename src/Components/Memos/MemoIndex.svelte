@@ -4,24 +4,29 @@
     <section class="section_item"
              transition:fade="{{delay: 50, duration: 150}}">
       <article>
-        <button
-            class="action-btn mobile100 add_btn" on:click={() => (showAddModal = true)}>
-          Add Memo
-        </button>
 
-        <SearchBlock on:searchQuery={searchNote}/>
+        <div class="memos_controls">
+          <button
+              class="action-btn mobile100 add_btn" on:click={() => (showAddModal = true)}>
+            Add Memo
+          </button>
+          <SearchBlock on:searchQuery={searchNote}/>
+        </div>
 
-        {#each Memos as note, i}
-          <Note
-              name={note.name}
-              description={note.description}
-              orderNumber={i + 1}
-              status={note.status}
-              noteID={note._id}
-              on:click={getOneMemoById(note._id)}
-              on:onNoteDelete={confirmDeleting}
-          />
-        {/each}
+        <div class="memos_list">
+          {#each Memos as note, i}
+            <Note
+                name={note.name}
+                description={note.description}
+                orderNumber={i + 1}
+                status={note.status}
+                noteID={note._id}
+                on:click={getOneMemoById(note._id)}
+                on:onNoteDelete={confirmDeleting}
+            />
+          {/each}
+        </div>
+
       </article>
     </section>
 
@@ -173,6 +178,18 @@
 
   main {
     padding: 1em;
+  }
+
+  .memos {
+    &_controls {
+      position: sticky;
+      top: 100px;
+    }
+    &_list {
+      max-height: calc(100vh - 300px);
+      overflow-y: auto;
+      padding: 0.8rem 0.2rem;
+    }
   }
 
   .add_btn {

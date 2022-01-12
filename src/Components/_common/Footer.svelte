@@ -1,40 +1,60 @@
 <script>
+  import NavLink from '../_common/atoms/NavLink.svelte';
 </script>
 
 
 <footer class="footer main-column">
   <nav class="footer_nav">
-    <a href="/" class="footer_nav__link">
-      <span class="material-icons footer_nav__icon">notes</span>
-    </a>
-    <a class="footer_nav__link">
-      <span class="material-icons footer_nav__icon">note_alt</span>
-    </a>
-    <a href="/settings" class="footer_nav__link">
-      <span class="material-icons footer_nav__icon">settings</span>
-    </a>
+    <NavLink
+        refUrl="/"
+        linkClass="footer_nav__link"
+        iconClass="footer_nav__icon"
+        iconSymbol="notes">
+    </NavLink>
+
+    <NavLink
+        refUrl="/alt"
+        linkClass="footer_nav__link"
+        iconClass="footer_nav__icon"
+        iconSymbol="note_alt">
+    </NavLink>
+
+    <NavLink
+        refUrl="/settings"
+        linkClass="footer_nav__link"
+        iconClass="footer_nav__icon"
+        iconSymbol="settings">
+    </NavLink>
   </nav>
 </footer>
 
 
 <style lang="scss">
-  .footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    &_nav {
+  :global {
+    .footer {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      align-items: stretch;
       justify-content: center;
-      flex: 1;
-      &__link {
-        display: inline-block;
-        margin-right: 10px;
-      }
-      &__icon {
-        font-size: 2.8rem;
+      &_nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex: 1;
+        &__link {
+          display: inline-block;
+          margin-right: 10px;
+          padding: 2px;
+          &.active {
+            outline: 2px solid;
+            border-radius: 6px;
+          }
+        }
+        &__icon {
+          font-size: 2.8rem;
+        }
       }
     }
   }
+
 </style>

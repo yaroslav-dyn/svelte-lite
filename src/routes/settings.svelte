@@ -1,3 +1,7 @@
+<svelte:head>
+  <title>Settings</title>
+</svelte:head>
+
 <main class="main_area main-column">
   <div>
     {someHeader}
