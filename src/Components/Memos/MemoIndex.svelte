@@ -168,81 +168,34 @@
 
   onMount(async () => {
     await getDefaultMemos(null);
-    apiStatus = await getApiResponse("status", "GET", null, true);
-    Memos = await getApiResponse("memos", "GET", null, false);
   });
 </script>
 
 <style lang="scss">
   @import "../../scss/vars";
 
-  main {
-    padding: 1em;
-  }
-
-  .memos {
-    &_controls {
-      position: sticky;
-      top: 100px;
-    }
-    &_list {
-      max-height: calc(100vh - 300px);
-      overflow-y: auto;
-      padding: 0.8rem 0.2rem;
-    }
-  }
-
   .add_btn {
     padding: 14px 6px;
     margin-bottom: 2rem;
   }
 
-  .main_area {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-
-    &.apps {
-      flex-direction: row;
-
-      .view_item {
-        padding-left: 1rem;
-      }
-    }
-
-    &.list {
-      flex-direction: column;
-      align-items: stretch;
-
-      :global(.section_item) {
-        min-width: 100%;
-      }
-    }
-
-    @media only screen and(max-width: $small-device) {
-      padding: 2rem 1rem;
-    }
-
-    > :global(.section_item) {
-      flex: 1;
-
-      &.view_item {
-        flex: 0 1 auto;
-      }
-    }
-  }
-
-  .grid-icon {
-    &.active {
-      border: 2px solid #444;
-      border-radius: 4px;
-    }
-  }
-
-  @media (min-width: $desktop-device) {
+  @media (max-width: $desktop-device) {
     .add_btn {
       padding: 14px 6px;
       margin-bottom: 1rem;
+    }
+  }
+
+  .memos {
+    &_controls {
+      position: sticky;
+      top: 86px;
+    }
+
+    &_list {
+      max-height: calc(100vh - 300px);
+      overflow-y: auto;
+      padding: 0.8rem 0.2rem;
     }
   }
 </style>

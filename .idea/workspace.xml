@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f87be87b-a67e-4fc5-8b57-f6616c1d4ccf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Components/_common/atoms/NavLink.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Ideas/ideaIndex.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Memos/MemoIndex.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Memos/MemoIndex.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Memos/memo-preview.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Memos/memo-preview.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/_common/Footer.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/_common/Footer.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/settings.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/settings.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/global.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +23,8 @@
         <option value="tsconfig.json" />
         <option value="memoStatusesView" />
         <option value="NavLink" />
+        <option value="idea" />
+        <option value="ideaIndex" />
       </list>
     </option>
   </component>
@@ -84,6 +84,14 @@
       <workItem from="1636292165478" duration="1358000" />
       <workItem from="1636294789182" duration="3149000" />
     </task>
+    <task id="LOCAL-00001" summary="Improve Memos list view, header, footer add sticky positions.">
+      <created>1641992406832</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1641992406832</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,5 +114,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Improve Memos list view, header, footer add sticky positions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improve Memos list view, header, footer add sticky positions." />
   </component>
 </project>

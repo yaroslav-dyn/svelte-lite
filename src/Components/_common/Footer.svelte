@@ -13,7 +13,7 @@
     </NavLink>
 
     <NavLink
-        refUrl="/alt"
+        refUrl="/idea"
         linkClass="footer_nav__link"
         iconClass="footer_nav__icon"
         iconSymbol="note_alt">
@@ -46,7 +46,7 @@
           margin-right: 10px;
           padding: 2px;
           &.active {
-            outline: 2px solid;
+            border: 2px solid;
             border-radius: 6px;
           }
         }
