@@ -24,15 +24,10 @@
     <div>
       <div class="flex-grid adjust-center justify-s-side-in memo_status-box__time-edit">
         <div class="memo_status-box">
-<!--          <span class="memo_status-box__label">Status:</span>-->
-
           <MemoStatusesView
               statusMemo="{note.status}"
-              on:changeStatusInput={onChangeStatusMemo}
-          />
-
+              on:changeStatusInput={onChangeStatusMemo}/>
         </div>
-
         <div class="flex-grid adjust-center">
           <i class="material-icons">schedule</i>
           {formatedDate}
@@ -40,13 +35,13 @@
       </div>
     </div>
 
+    <button class="action-btn warn w100" on:click={() => dispatch('closeView')}>
+      Close
+    </button>
     <button class="action-btn success w100" on:click={updateNote}>
       Update
     </button>
 
-    <button class="action-btn warn w100" on:click={() => dispatch('closeView')}>
-      close
-    </button>
   </div>
 </div>
 
@@ -59,7 +54,6 @@
   $: formatedDate = note && dayjs(note.updatedAt).format("DD.MM.YYYY, HH:mm");
 
   const dispatch = createEventDispatcher();
-
 
   const onChangeStatusMemo = (status) => {
     note.status = status.detail;

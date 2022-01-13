@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f87be87b-a67e-4fc5-8b57-f6616c1d4ccf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Components/Ideas/ideaIndex.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Ideas/_common/add-idea-modal.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Ideas/atoms/ideaSingle.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Ideas/ideaIndex.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Ideas/ideaIndex.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Memos/MemoIndex.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Memos/MemoIndex.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/_common/Footer.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/_common/Footer.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Memos/add-modal.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Memos/add-modal.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Memos/memo-preview.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Memos/memo-preview.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/General.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/General.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/api.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/global.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +32,7 @@
         <option value="NavLink" />
         <option value="idea" />
         <option value="ideaIndex" />
+        <option value="ideaSingle" />
       </list>
     </option>
   </component>
@@ -56,7 +64,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Components/Ideas/_common" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -67,6 +75,11 @@
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Components/Ideas/_common" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -83,6 +96,7 @@
       <workItem from="1635857086335" duration="12653000" />
       <workItem from="1636292165478" duration="1358000" />
       <workItem from="1636294789182" duration="3149000" />
+      <workItem from="1642064194887" duration="15967000" />
     </task>
     <task id="LOCAL-00001" summary="Improve Memos list view, header, footer add sticky positions.">
       <created>1641992406832</created>
@@ -91,17 +105,18 @@
       <option name="project" value="LOCAL" />
       <updated>1641992406832</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Preparing Ideas component">
+      <created>1642005899325</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1642005899325</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-    <option name="exactExcludedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/Services/api.js.map" />
-        <option value="$PROJECT_DIR$/src/Interfaces/General.js.map" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -117,6 +132,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Improve Memos list view, header, footer add sticky positions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improve Memos list view, header, footer add sticky positions." />
+    <MESSAGE value="Preparing Ideas component" />
+    <option name="LAST_COMMIT_MESSAGE" value="Preparing Ideas component" />
   </component>
 </project>

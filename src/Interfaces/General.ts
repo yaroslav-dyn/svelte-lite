@@ -1,6 +1,6 @@
 
 export interface MemosItem {
-error: any;
+  error: any;
   status:      boolean;
   _id:         string;
   name:        string;
@@ -8,7 +8,13 @@ error: any;
   __v:         number;
 }
 
-export enum TemplateType {
-  list = "list",
-  apps = "apps"
+export interface IdeasItem {
+  _id: string;
+  isDefault: boolean;
+  name: string;
+  group: string;
+  text: string
+  createdAt: string
+  updatedAt: string
+  __v: number
 }

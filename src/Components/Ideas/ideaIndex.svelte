@@ -1,78 +1,72 @@
 <main class="main_area main-column">
-
-
     <section class="section_item">
-
-
       {#if currentLetter}
-        <label class="group_header">{currentLetter.group}</label>
-        <div>
-            <textarea
-                class="idea_letter custom-input area"
-                name="idea"
-                bind:value={currentLetter.text} />
-        </div>
-
+        <SingleIdea singleIdea={currentLetter} />
       {/if}
-
       <ul class="group_motion">
-      {#each Letters as letter }
-        <li class="group_motion__item" on:click={()=>setCategory(letter)}>
-          <span class="group_motion__label"> {letter.group.substring(0,2)} </span>
+        <li class="group_motion__item add" on:click={() => triggerModal({detail: true})}>
+          <span class="material-icons">add</span>
         </li>
-      {/each}
+        {#each Letters as letter }
+          <li class="group_motion__item {letter.group === currentLetter.group ? 'active': ''}"
+              on:click={()=>setCategory(letter)}>
+            <span class="group_motion__label"> {letter.group.substring(0, 2)} </span>
+          </li>
+        {/each}
       </ul>
     </section>
-
 </main>
 
-<script lang="ts">
-  let Letters = [
-    {
-      text: 'Hi! My name is Mark',
-      group: 'personal',
-      icon: 'person'
-    },
-    {
-      text: 'My goals',
-      group: 'business',
-      icon: 'business'
-    }
-  ];
-  let currentLetter = {
-    text: 'Hi! My name is Mark',
-    group: 'personal',
-    icon: 'person'
-  };
-  let currentGroup = 'personal';
+<!--  Modals -->
+{#if showAddModal}
+  <AddIdeaModal on:addIdea={createNewIdea} on:closeModal={triggerModal}/>
+{/if}
 
+
+<script lang="ts">
+  import SingleIdea from './atoms/ideaSingle.svelte';
+  import AddIdeaModal from './_common/add-idea-modal.svelte';
+  import {onMount} from "svelte";
+  import {getApiResponse} from "../../Services/api";
+  import {IdeasItem} from "../../Interfaces/General";
+
+  /** TODO: mockup debug data **/
+  let Letters: IdeasItem[] = [];
+  let currentLetter: IdeasItem|null = null;
+  /** **/
+
+  let showAddModal = false
+
+  const triggerModal = (status) => {
+    showAddModal = status ? status.detail : false;
+  };
 
   const setCategory = (letter) => {
     currentLetter = letter;
     console.log(currentLetter);
+  };
+
+  const createNewIdea = async (idea) => {
+    console.log(
+        'create idea', idea
+    );
   }
+
+  const getDefaultIdeas = async (param: string) => {
+    const setUrl = param ? `ideas?${param}` : "ideas";
+    Letters = await getApiResponse(setUrl, "GET", null, false);
+    currentLetter = Letters[0]
+  };
+
+  onMount(async () => {
+    await getDefaultIdeas('');
+  });
 
 </script>
 
 <style lang="scss">
   .main_area {
     padding: 1rem;
-  }
-  .group_header {
-    display: inline-block;
-    font-size: 16px;
-    padding: 1rem;
-    font-weight: 500;
-    text-transform: capitalize;
-  }
-  .idea_letter {
-    width: 100%;
-    height: 70vh;
-    border: none;
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 1px rgba(0,0,0,0.6);
-    }
   }
 
   .group_motion {
@@ -86,6 +80,14 @@
       border-radius: 6px;
       padding: 8px;
       margin-right: 0.5rem;
+      cursor: pointer;
+      &.add {
+        padding: 4px 6px;
+      }
+      &.active {
+        background-color: #1091cb;
+        color: #fff;
+      }
     }
     &__label {
       text-transform: uppercase;

@@ -4,61 +4,48 @@
       <i class="close_icon close material-icons" on:click={closeModal}>close</i>
     </div>
     <form class="memo-controls-form" name="memo-controls-form" on:submit|preventDefault>
-      <label for="name"> Enter memo name </label>
-      <input id="name" type="text" name="name" bind:value={memoForm.name}>
 
-      <label for="description"> Description </label>
+      <label for="group"> Enter group name </label>
+      <input id="group" type="text" name="group" bind:value={ideaForm.group}>
+
+      <label for="name"> Your idea title </label>
+      <input id="name" type="text" name="name" bind:value={ideaForm.name}>
+
+      <label for="description"> Text </label>
       <textarea
           class="description_field"
           rows="4"
           id="description"
           name="description"
-          bind:value={memoForm.description}></textarea>
-
-      <MemoStatusesView
-          title="Status:"
-          statusMemo="{statusMemo}"
-          on:changeStatusInput={onChangeStatusMemo}
-      />
+          bind:value={ideaForm.text}></textarea>
 
       <button
           disabled="{disabled}"
           class="action-btn success add-memo"
-          on:click={createMemo}>
-        Create note
+          on:click={createIdea}>
+        Create idea
       </button>
-
     </form>
   </div>
 </div>
 
 <script lang="ts">
   import {createEventDispatcher} from 'svelte';
-  import MemoStatusesView from '../_common/atoms/memoStatusesView.svelte';
 
   const dispatch = createEventDispatcher();
 
-  let memoForm = {
+  let ideaForm = {
     name: null,
-    description: null,
-    status: false
+    text: null,
+    group: ''
   }
-  let disabled: boolean;
-  let statusMemo: boolean;
-  let statusHru: string
+  let currentGroup = '';
+  $: disabled = !ideaForm.name || !ideaForm.group.length > 0;
 
-  $: disabled = !(!!memoForm.name);
-  $: statusHru = statusMemo ? "––Complete" : "––Pending";
-
-
-  const onChangeStatusMemo = (status) => {
-    statusMemo = status.detail;
-  }
-
-  const createMemo = () => {
-    memoForm.status = statusMemo;
-    dispatch('addMemo', {
-      memoForm
+  const createIdea = () => {
+    ideaForm.group = currentGroup;
+    dispatch('addIdea', {
+      ideaForm
     });
   }
 
@@ -69,7 +56,7 @@
 </script>
 
 <style lang="scss">
-  @import '../../scss/vars.scss';
+  @import '../../../scss/vars.scss';
 
   .add_modal {
     position: fixed;

@@ -7,7 +7,8 @@
 
         <div class="memos_controls">
           <button
-              class="action-btn mobile100 add_btn" on:click={() => (showAddModal = true)}>
+              class="action-btn mobile100 add_btn"
+              on:click={() => triggerModal({detail: true})}>
             Add Memo
           </button>
           <SearchBlock on:searchQuery={searchNote}/>
@@ -73,7 +74,7 @@
 
   /* DATA  */
   //@ts-ignore
-  let Memos: MemosItem = [];
+  let Memos: MemosItem[] = [];
   let Memo: MemosItem = null;
   let apiStatus = null;
   let showAddModal = false;

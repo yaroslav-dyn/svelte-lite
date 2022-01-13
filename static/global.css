@@ -108,15 +108,26 @@ div {
   cursor: pointer;
   color: var(--main-blue-color);
 }
+.action-btn[disabled] {
+  opacity: 0.6;
+  color: inherit;
+}
+.action-btn[disabled]:hover {
+  background-color: inherit;
+  color: inherit;
+}
 
-.action-btn.default {
+.action-btn.default, .action-btn:focus {
   background-color: #eee;
 }
-.action-btn.warn {
+
+.action-btn.warn, .action-btn.warn:focus,
+.action-btn.warn[disabled], .action-btn.warn[disabled]:hover{
   background-color: var(--main-warn-color);
   color: #fff;
 }
-.action-btn.success {
+.action-btn.success, .action-btn.success:focus,
+.action-btn.success[disabled], .action-btn.success[disabled]:hover {
   background-color: var( --main-success-color);
   color: #fff;
 }
@@ -124,23 +135,10 @@ div {
   background-color: var(--main-slave-color);
 }
 
-.action-btn[disabled] {
-  opacity: 0.6;
-  color: var(--main-blue-color);
-}
-.action-btn[disabled]:hover {
-  background-color: #eee;
-  color: var(--main-blue-color);
-}
 
 .action-btn:hover {
   background-color: #444;
   color: var(--main-blue-color);
-}
-
-.action-btn.success {
-  background-color: limegreen;
-  color: #fff
 }
 
 .memo-icons {
