@@ -23,7 +23,7 @@ export const showToast = (message, theme) => {
     theme: th
   }
   Object.assign(defaultToastOpt, currentTheme)
-  toast.push(message  , defaultToastOpt);
+  toast.push(message, defaultToastOpt);
 }
 
 

@@ -6,24 +6,19 @@
       <article>
 
         <div class="memos_controls">
-          <button
-              class="action-btn mobile100 add_btn"
-              on:click={() => triggerModal({detail: true})}>
-            Add Memo
-          </button>
           <SearchBlock on:searchQuery={searchNote}/>
         </div>
 
         <div class="memos_list">
           {#each Memos as note, i}
             <Note
-                name={note.name}
-                description={note.description}
-                orderNumber={i + 1}
-                status={note.status}
-                noteID={note._id}
-                on:click={getOneMemoById(note._id)}
-                on:onNoteDelete={confirmDeleting}
+              name={note.name}
+              description={note.description}
+              orderNumber={i + 1}
+              status={note.status}
+              noteID={note._id}
+              on:click={getOneMemoById(note._id)}
+              on:onNoteDelete={confirmDeleting}
             />
           {/each}
         </div>
@@ -33,11 +28,16 @@
 
   {:else if Memo}
     <section
-        class="section_item view_item"
-        transition:slide="{{delay: 200, duration: 150, easing: bounceInOut}}">
+      class="section_item view_item"
+      transition:slide="{{delay: 200, duration: 150, easing: bounceInOut}}">
       <MemoPreview note={Memo} on:updateNote={updateMemo} on:closeView={closePreview}/>
     </section>
   {/if}
+  <button
+    class="action-btn mobile100 add_btn"
+    on:click={() => triggerModal({detail: true})}>
+    Add Memo
+  </button>
 </main>
 
 <!--  Modals -->
@@ -47,12 +47,12 @@
 
 {#if confirmModal}
   <ConfirmModal
-      title={confirmModal.title}
-      message={confirmModal.message}
-      hasControls={confirmModal.controls}
-      confirmType="warning"
-      on:confirmAction={deleteMemo(confirmModal.data)}
-      on:closeModal={triggerConfirmModal}
+    title={confirmModal.title}
+    message={confirmModal.message}
+    hasControls={confirmModal.controls}
+    confirmType="warning"
+    on:confirmAction={deleteMemo(confirmModal.data)}
+    on:closeModal={triggerConfirmModal}
   />
 {/if}
 
@@ -178,6 +178,7 @@
   .add_btn {
     padding: 14px 6px;
     margin-bottom: 2rem;
+    text-transform: uppercase;
   }
 
   @media (max-width: $desktop-device) {
@@ -187,6 +188,11 @@
     }
   }
 
+  :global {
+    .search {
+      min-height: 48px;
+    }
+  }
   .memos {
     &_controls {
       position: sticky;
@@ -194,7 +200,7 @@
     }
 
     &_list {
-      max-height: calc(100vh - 300px);
+      max-height: calc(100vh - 245px);
       overflow-y: auto;
       padding: 0.8rem 0.2rem;
     }

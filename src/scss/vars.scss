@@ -23,9 +23,10 @@ $desktop-device: 969px;
     flex-direction: row;
   }
   &.adjust {
-    &-center {
-      align-items: center;
-    }
+    &-start {align-items: flex-start;}
+    &-center {align-items: center;}
+    &-end {align-items: end;}
+    &-base {align-items: baseline;}
   }
   &.justify {
     &-left {justify-content: left;}

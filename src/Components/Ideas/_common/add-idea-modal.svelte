@@ -3,7 +3,7 @@
     <div class="close_icon__wrapper">
       <i class="close_icon close material-icons" on:click={closeModal}>close</i>
     </div>
-    <form class="memo-controls-form" name="memo-controls-form" on:submit|preventDefault>
+    <form class="memo-controls-form" name="memo-controls-form" on:submit|preventDefault={createIdea}>
 
       <label for="group"> Enter group name </label>
       <input id="group" type="text" name="group" bind:value={ideaForm.group}>
@@ -20,9 +20,9 @@
           bind:value={ideaForm.text}></textarea>
 
       <button
+        type="submit"
           disabled="{disabled}"
-          class="action-btn success add-memo"
-          on:click={createIdea}>
+          class="action-btn success add-memo">
         Create idea
       </button>
     </form>
@@ -39,11 +39,10 @@
     text: null,
     group: ''
   }
-  let currentGroup = '';
+
   $: disabled = !ideaForm.name || !ideaForm.group.length > 0;
 
   const createIdea = () => {
-    ideaForm.group = currentGroup;
     dispatch('addIdea', {
       ideaForm
     });
@@ -52,7 +51,6 @@
   const closeModal = () => {
     dispatch('closeModal', false)
   }
-
 </script>
 
 <style lang="scss">

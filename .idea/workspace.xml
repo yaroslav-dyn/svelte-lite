@@ -5,18 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f87be87b-a67e-4fc5-8b57-f6616c1d4ccf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Components/Ideas/_common/add-idea-modal.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Ideas/atoms/ideaSingle.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Ideas/_common/IdeaControls.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/_common/base-modal.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/DebounceValue.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Ideas/_common/add-idea-modal.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Ideas/_common/add-idea-modal.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Ideas/atoms/ideaSingle.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Ideas/atoms/ideaSingle.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Ideas/ideaIndex.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Ideas/ideaIndex.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Memos/MemoIndex.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Memos/MemoIndex.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Memos/add-modal.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Memos/add-modal.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Memos/memo-preview.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Memos/memo-preview.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaces/General.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/General.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/toastService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/toastService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scss/vars.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/vars.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/global.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +32,9 @@
         <option value="idea" />
         <option value="ideaIndex" />
         <option value="ideaSingle" />
+        <option value="base-modal" />
+        <option value="IdeaControls" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -96,7 +98,8 @@
       <workItem from="1635857086335" duration="12653000" />
       <workItem from="1636292165478" duration="1358000" />
       <workItem from="1636294789182" duration="3149000" />
-      <workItem from="1642064194887" duration="15967000" />
+      <workItem from="1642064194887" duration="16344000" />
+      <workItem from="1642151891413" duration="17628000" />
     </task>
     <task id="LOCAL-00001" summary="Improve Memos list view, header, footer add sticky positions.">
       <created>1641992406832</created>

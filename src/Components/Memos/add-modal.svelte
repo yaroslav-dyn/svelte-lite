@@ -84,7 +84,7 @@
 
     &__content {
       padding: 2rem;
-      position: relative;
+      position: absolute;
       background: #fff;
       box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
       top: 0;
