@@ -1,7 +1,7 @@
 <main class="main_area main-column">
   <section class="section_item">
     {#if currentLetter}
-      <SingleIdea singleIdea={currentLetter}/>
+      <SingleIdea singleIdea={currentLetter} on:editIdea={updateIdea}/>
     {/if}
     <div class="group_motion flex-grid justify-s-side-in adjust-center">
       <div class="group_motion__item add" on:click={() => triggerModal(true, 'addModal')}>
@@ -70,6 +70,7 @@
     controlsModal: false
   }
   let confirmModal = null;
+
   const triggerModal = (status: CustomEvent | boolean, key?: string) => {
     if (typeof status !== "boolean") {
       modalsState[key] = status?.detail || false;
@@ -92,6 +93,7 @@
     }
     triggerModal(false, 'addModal');
   };
+
   const setCategory = (letter) => {
     currentLetter = letter;
   };
@@ -111,7 +113,6 @@
       data: e,
     };
   };
-
 
   const deleteIdea = async (data): Promise<void> => {
     const resp = await getApiResponse(
@@ -135,6 +136,15 @@
     }
     triggerModal(false, 'controlsModal')
   }
+
+  const updateIdea = async (e): Promise<void> => {
+    const {group, name, text} = e.detail;
+    const resp = await getApiResponse(
+        `idea/${e.detail._id}`,
+        "PUT",
+        {group, name, text},
+        false);
+  };
 
   onMount(async () => {
     await getDefaultIdeas('');

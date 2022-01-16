@@ -4,18 +4,21 @@
     <textarea
         class="idea_letter custom-input area"
         name="idea"
-        on:input={changeIdea}
+        on:change={changeIdea}
         bind:value={singleIdea.text}/>
   </div>
 </div>
 
 <script lang="ts">
-  import { debounceValue } from './Services/';
   export let singleIdea = null;
+  import {createEventDispatcher} from 'svelte';
+  const dispatch = createEventDispatcher();
 
-  const changeIdea = (e) => {
-    console.log('change', e);
+  const changeIdea = () => {
+    dispatch('editIdea', singleIdea)
   }
+
+
 
 </script>
 
