@@ -3,15 +3,30 @@
     <img src="../../../img/logo.svg" alt="logo" />
   </div>
   <div class="api_status__container">
-    <div class={apiStatus && apiStatus.status > 300 ? 'api_status error' : 'api_status success'}>
+    <div class={!apiStatus || apiStatus && apiStatus.status > 300 ? 
+    'api_status error' : 'api_status success'}>
       <strong>API status: </strong>
-      <span>{apiStatus && apiStatus.status} {apiStatus && apiStatus.statusText}</span>
+      {#if apiStatus}
+        <span>{apiStatus && apiStatus.status} {apiStatus && apiStatus.statusText}</span>
+      {:else}
+        <strong>error</strong>
+      {/if}
     </div>
   </div>
 </header>
 
 <script>
+import { onMount } from "svelte";
+
+
   export let apiStatus = null
+
+  onMount(()=> {
+    console.log(
+      apiStatus
+    );
+  })
+
 </script>
 <style>
   .header {

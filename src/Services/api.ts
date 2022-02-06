@@ -1,6 +1,6 @@
 const serverUrl = "https://memo-silver-app.herokuapp.com/api/";
 const localUrl = "http://localhost:4000/api/";
-const apiUrl = localUrl; //serverUrl
+const apiUrl = serverUrl || localUrl; //serverUrl
 const defaultHeaders: HeadersInit = new Headers();
 defaultHeaders.set('Content-Type', 'application/json');
 
