@@ -13,6 +13,6 @@
   export let iconClass = '';
   export let iconSymbol:string|null = null;
 
-  $: isActive = $page.path === refUrl;
+  $: isActive = $page.url.pathname === refUrl;
 
 </script>
